@@ -5,14 +5,20 @@ public class OnlinePurchaseManager {
     /** An ArrayList of purchased Gizmo objects,
      * instantiated in the constructor.
      */
-    private ArrayList<Gizmo> purchases;
+    private ArrayList<Gizmo> purchases = new ArrayList<>();
 
     /** Returns the number of purchased Gizmo objects that are electronic
      * whose manufacturer is maker, as described in part (a).
      */
     public int countElectronicsByMaker(String maker) {
         /* to be implemented in part (a) */
-
+        int count = 0;
+        for(int i = 0; i<purchases.size(); i++) {
+            if(purchases.get(i).isElectronic()&&purchases.get(i).getMaker().equals(maker)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /** Returns true if any pair of adjacent purchased Gizmo objects are
@@ -20,7 +26,12 @@ public class OnlinePurchaseManager {
      */
     public boolean hasAdjacentEqualPair() {
         /* to be implemented in part (b) */
-
+        for(int i = 0; i<purchases.size()-1; i++) {
+            if(purchases.get(i).equals(purchases.get(i+1))) {
+                return true;
+            }
+        }
+        return false;
     }
     public OnlinePurchaseManager() {
         purchases = new ArrayList <Gizmo>();
